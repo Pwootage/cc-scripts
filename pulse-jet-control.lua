@@ -6,8 +6,8 @@ local redstoneInputSide = "right"
 
 local furnace = peripheral.wrap(furnaceSide)
 
-local maxHeat = 950;
-local minHeat = 910;
+local maxHeat = 950
+local minHeat = 910
 
 
 redstone.setOutput(redstoneOutputSide, false)
@@ -18,8 +18,8 @@ function isRunning()
 end
 
 function heatManage()
-    local temp = furnace.getTemperature();
-    local redstoneOn = redstone.getOutput(redstoneOutputSide);
+    local temp = furnace.getTemperature()
+    local redstoneOn = redstone.getOutput(redstoneOutputSide)
     if ((temp > maxHeat) and redstoneOn) then
         print("Temperature "..temp..">"..maxHeat..", shutting off power")
         redstone.setOuput(redstoneOutputSide, false)
