@@ -1,7 +1,7 @@
 --Will auto-update this repository
 
-local pwd = shell.dir()
-local dlDir = shell.resoolve(pwd.."/..")
+local pwd = shell.getRunningProgram()
+local dlDir = fs.combine(pwd, "../..")
 
-print(dlDir)
+print("Updating scripts in "..dlDir)
 shell.run("github", "pwootage", "cc-scripts", dlDir)
