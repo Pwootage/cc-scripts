@@ -34,6 +34,7 @@ while (true) do
         heatManage()
         os.sleep(0.5)
     else
+        redstone.setOutput(redstoneOutputSide, false)
         os.sleep(1)
     end
 end
