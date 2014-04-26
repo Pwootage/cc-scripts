@@ -30,8 +30,6 @@ function update()
     local types = appEng.getStoredItemTypes()
     local remItems = appEng.getRemainingItemCount()
     local remTypes = appEng.getRemainingItemTypes()
-    local msg1 = "Disk Space Usage:";
-    local progX1 = string.len(msg1) + 1
     local progColor = colors.green
     if (usedPercent > 0.5) then progColor = colors.yellow end
     if (usedPercent > 0.80) then progColor = colors.red end
@@ -43,9 +41,9 @@ function update()
     drawText(1, 4, "Stored items:    "..padLeft(prettyNumber(items), 8))
     drawText(1, 5, "Item types:      "..padLeft(prettyNumber(types), 8))
     drawText(1, 6, "Remaining items: "..padLeft(prettyNumber(remItems), 8))
-    drawText(1, 6, "Remaining types: "..padLeft(prettyNumber(remTypes), 8))
-    drawText(1, monH - 0, msg1)
-    drawProgress(progX1, monH - 0, monW, monH - 0, usedPercent, progColor)
+    drawText(1, 7, "Remaining types: "..padLeft(prettyNumber(remTypes), 8))
+    drawText(1, monH - 1, "Disk Space Usage:")
+    drawProgress(1, monH - 0, monW, monH - 0, usedPercent, progColor)
 end
 
 function drawProgress(fromX, fromY, toX, toY, progress, color1, color2)
