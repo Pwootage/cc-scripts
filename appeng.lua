@@ -31,9 +31,9 @@ function update()
     local msg2 = "Used "..prettyNumber(used,storageSuffixes)..", Free "..prettyNumber(free,storageSuffixes)..", Total "..prettyNumber(total,storageSuffixes)
     local progX1 = string.len(msg1) + 1
     local progX2 = monW - string.len(msg2) + 1
-    drawText(0, monH, msg1)1
+    drawText(0, monH, msg1)
     drawProgress(progX1, monH, progX2, monH, usedPercent)
-
+    drawText(progX2 + 1, monH, msg2)
 end
 
 function drawProgress(fromX, fromY, toX, toY, progress, color1, color2)
