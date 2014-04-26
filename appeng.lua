@@ -10,7 +10,7 @@ local appEng = peripheral.wrap(aeSide)
 local mon = peripheral.wrap(monitorSide)
 
 function main()
-    term.redirect(mon)
+
     while (true) do
         update()
         os.sleep(updateRate)
@@ -22,7 +22,7 @@ function update()
     local free = appEng.getFreeBytes()
     local used = total - free;
     local usedPercent = used/total;
-    drawProgress(mon, 0, 0, 10, 0, usedPercent)
+    drawProgress(0, 0, 10, 0, usedPercent)
 end
 
 function drawProgress(fromX, fromY, toX, toY, progress, color1, color2)
@@ -32,8 +32,10 @@ function drawProgress(fromX, fromY, toX, toY, progress, color1, color2)
     local lenY = toY - fromY
     local midX = fromX + lenX * progress
     local midY = fromY + lenY * progress
+    term.redirect(mon)
     paintutils.drawLine(fromX, fromY, midX, midY, color1)
     paintutils.drawLine(midX, midY, toX, toY, color2)
+    term.redirect(term)
 end
 
 
