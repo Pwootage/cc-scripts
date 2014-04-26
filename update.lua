@@ -4,4 +4,4 @@ local pwd = shell.getRunningProgram()
 local dlDir = fs.combine(pwd, "../..")
 
 print("Updating scripts in "..dlDir)
-shell.run("github", "pwootage", "cc-scripts", dlDir)
+shell.run("github.lua", "pwootage", "cc-scripts", dlDir)

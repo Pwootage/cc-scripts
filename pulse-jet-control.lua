@@ -23,7 +23,7 @@ function heatManage()
     if ((temp > maxHeat) and redstoneOn) then
         print("Temperature "..temp..">"..maxHeat..", shutting off power")
         redstone.setOutput(redstoneOutputSide, false)
-    elseif ((temp < maxHeat) and not redstoneOn) then
+    elseif ((temp < minHeat) and not redstoneOn) then
         print("Temperature "..furnace.getTemperature().."<"..minHeat..", turning on power")
         redstone.setOutput(redstoneOutputSide, true)
     end
