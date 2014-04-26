@@ -42,7 +42,8 @@ function update()
     drawText(1, 5, "Item types:      "..padLeft(prettyNumber(types), 8))
     drawText(1, 6, "Remaining items: "..padLeft(prettyNumber(remItems), 8))
     drawText(1, 7, "Remaining types: "..padLeft(prettyNumber(remTypes), 8))
-    drawText(1, monH - 1, "Disk Space Usage:")
+    drawText(1, monH - 1,
+                  "Disk Space Usage:"..padLeft(math.floor(usedPercent*1000)/10, 7).."%")
     drawProgress(1, monH - 0, monW, monH - 0, usedPercent, progColor)
 end
 
