@@ -30,10 +30,9 @@ function update()
     local msg1 = "Disk Space Usage:";
     local msg2 = "Used "..prettyNumber(used,storageSuffixes)..", Free "..prettyNumber(free,storageSuffixes)..", Total "..prettyNumber(total,storageSuffixes)
     local progX1 = string.len(msg1) + 1
-    local progX2 = monW - string.len(msg2) + 1
-    drawText(0, monH, msg1)
-    drawProgress(progX1, monH, progX2, monH, usedPercent)
-    drawText(progX2 + 1, monH, msg2)
+    drawText(1, monH - 1, msg1)
+    drawProgress(progX1, monH - 1, monW, monH - 1, usedPercent)
+    drawText(monW - string.len(msg2) - 1, monH, msg2)
 end
 
 function drawProgress(fromX, fromY, toX, toY, progress, color1, color2)
@@ -49,7 +48,11 @@ function drawProgress(fromX, fromY, toX, toY, progress, color1, color2)
     term.redirect(term)
 end
 
-function drawText(posX, posY, text)
+function drawText(posX, posY, text, color, bg)
+    color = color or colors.white
+    bg = bg or colors.black
+    mon.setTextColor(color)
+    mon.setBackgroundColor(bg)
     mon.setCursorPos(posX, posY)
     mon.write(text)
 end
