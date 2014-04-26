@@ -9,8 +9,7 @@ local updateRate = 1
 local appEng = peripheral.wrap(aeSide)
 local mon = peripheral.wrap(monitorSide)
 mon.setTextScale(1)
-local monW = mon.getWidth()
-local monH = mon.getHeight()
+local monW, monH = mon.getSize()
 
 local storageSuffixes = {"b", "kb", "mb", "gb"}
 
