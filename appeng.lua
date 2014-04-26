@@ -71,7 +71,7 @@ function drawText(posX, posY, text, color, bg)
 end
 
 function prettyNumber(num, suffixes)
-    suffixes = suffixes or {"  ", "k ", "m ", "b "}
+    suffixes = suffixes or {"", "k", "m", "b"}
     if (num > 10000000000) then --ten billion
         return math.floor(num/1000000000)..suffixes[4]
     end
