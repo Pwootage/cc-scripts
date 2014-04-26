@@ -37,15 +37,15 @@ function update()
     if (usedPercent > 0.5) then progColor = colors.yellow end
     if (usedPercent > 0.80) then progColor = colors.red end
     term.clear()
-    drawText(1, 1, "Used disk space:  "..padLeft(prettyNumber(used,storageSuffixes), 10))
-    drawText(1, 2, "Free disk space:  "..padLeft(prettyNumber(free,storageSuffixes), 10))
-    drawText(1, 3, "Total disk space: "..padLeft(prettyNumber(total,storageSuffixes), 10))
-    drawText(1, 4, "Stored items:     "..padLeft(prettyNumber(items,storageSuffixes), 10))
-    drawText(1, 5, "Item types:       "..padLeft(prettyNumber(total,storageSuffixes), 10))
-    drawText(1, 6, "Remaining items:  "..padLeft(prettyNumber(remItems,storageSuffixes), 10))
-    drawText(1, 6, "Remaining types:  "..padLeft(prettyNumber(remTypes,storageSuffixes), 10))
+    drawText(1, 1, "Used disk space: "..padLeft(prettyNumber(used,storageSuffixes), 8))
+    drawText(1, 2, "Free disk space: "..padLeft(prettyNumber(free,storageSuffixes), 8))
+    drawText(1, 3, "Total disk space:"..padLeft(prettyNumber(total,storageSuffixes), 8))
+    drawText(1, 4, "Stored items:    "..padLeft(prettyNumber(items,storageSuffixes), 8))
+    drawText(1, 5, "Item types:      "..padLeft(prettyNumber(total,storageSuffixes), 8))
+    drawText(1, 6, "Remaining items: "..padLeft(prettyNumber(remItems,storageSuffixes), 8))
+    drawText(1, 6, "Remaining types: "..padLeft(prettyNumber(remTypes,storageSuffixes), 8))
     drawText(1, monH - 0, msg1)
-    drawProgress(progX1, monH - 0, monW, monH - 2, usedPercent, progColor)
+    drawProgress(progX1, monH - 0, monW, monH - 0, usedPercent, progColor)
     end
 
 function drawProgress(fromX, fromY, toX, toY, progress, color1, color2)
