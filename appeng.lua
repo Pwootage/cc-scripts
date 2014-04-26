@@ -28,11 +28,13 @@ function update()
     local used = total - free;
     local usedPercent = used/total;
     local msg1 = "Disk Space Usage:";
-    local msg2 = "Used "..prettyNumber(used,storageSuffixes)..", Free "..prettyNumber(free,storageSuffixes)..", Total "..prettyNumber(total,storageSuffixes)
+    local msg2 = "    Used    Free   Total"
+    local msg3 = padLeft(prettyNumber(used,storageSuffixes), 8)..padLeft(prettyNumber(free,storageSuffixes), 8)..padLeft(prettyNumber(total,storageSuffixes), 8)
     local progX1 = string.len(msg1) + 1
-    drawText(1, monH - 1, msg1)
-    drawProgress(progX1, monH - 1, monW, monH - 1, usedPercent)
-    drawText(monW - string.len(msg2) - 1, monH, msg2)
+    drawText(1, monH - 2, msg1)
+    drawProgress(progX1, monH - 2, monW, monH - 2, usedPercent)
+    drawText(1, monH - 1, msg2)
+    drawText(1, monH - 0, msg3)
 end
 
 function drawProgress(fromX, fromY, toX, toY, progress, color1, color2)
@@ -69,6 +71,14 @@ function prettyNumber(num, suffixes)
         return math.floor(num/1000)..suffixes[2]
     end
     return math.floor(num)..suffixes[1]
+end
+
+function padLeft(string, chars)
+    local res = string;
+    while (string.len(res) < chars) do
+       res = " " + res
+    end
+    return res
 end
 
 
