@@ -8,9 +8,9 @@ local updateRate = 1
 
 local appEng = peripheral.wrap(aeSide)
 local mon = peripheral.wrap(monitorSide)
-mon.setTextScale(0.5)
-local monW = 57
-local monH = 24
+mon.setTextScale(1)
+local monW = mon.getWidth()
+local monH = mon.getHeight()
 
 local storageSuffixes = {"b", "kb", "mb", "gb"}
 
@@ -36,14 +36,15 @@ function update()
     local progColor = colors.green
     if (usedPercent > 0.5) then progColor = colors.yellow end
     if (usedPercent > 0.80) then progColor = colors.red end
+    mon.setBackgroundColor(colors.black)
     mon.clear()
     drawText(1, 1, "Used disk space: "..padLeft(prettyNumber(used,storageSuffixes), 8))
     drawText(1, 2, "Free disk space: "..padLeft(prettyNumber(free,storageSuffixes), 8))
     drawText(1, 3, "Total disk space:"..padLeft(prettyNumber(total,storageSuffixes), 8))
-    drawText(1, 4, "Stored items:    "..padLeft(prettyNumber(items,storageSuffixes), 8))
-    drawText(1, 5, "Item types:      "..padLeft(prettyNumber(types,storageSuffixes), 8))
-    drawText(1, 6, "Remaining items: "..padLeft(prettyNumber(remItems,storageSuffixes), 8))
-    drawText(1, 6, "Remaining types: "..padLeft(prettyNumber(remTypes,storageSuffixes), 8))
+    drawText(1, 4, "Stored items:    "..padLeft(prettyNumber(items), 8))
+    drawText(1, 5, "Item types:      "..padLeft(prettyNumber(types), 8))
+    drawText(1, 6, "Remaining items: "..padLeft(prettyNumber(remItems), 8))
+    drawText(1, 6, "Remaining types: "..padLeft(prettyNumber(remTypes), 8))
     drawText(1, monH - 0, msg1)
     drawProgress(progX1, monH - 0, monW, monH - 0, usedPercent, progColor)
 end
@@ -71,7 +72,7 @@ function drawText(posX, posY, text, color, bg)
 end
 
 function prettyNumber(num, suffixes)
-    suffixes = suffixes or {"", "k", "m", "b"}
+    suffixes = suffixes or {"  ", "k ", "m ", "b "}
     if (num > 10000000000) then --ten billion
         return math.floor(num/1000000000)..suffixes[4]
     end
