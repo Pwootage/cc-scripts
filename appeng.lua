@@ -57,15 +57,15 @@ end
 function prettyNumber(num, suffixes)
     suffixes = suffixes or {"", "k", "m", "b"}
     if (num > 10000000000) then --ten billion
-        return round(num/1000000000, 0)..suffixes[4]
+        return math.floor(num/1000000000)..suffixes[4]
     end
     if (num > 10000000) then --ten million
-        return round(num/1000000, 0)..suffixes[3]
+        return math.floor(num/1000000)..suffixes[3]
     end
     if (num > 10000) then --ten thousand
-        return round(num/1000, 0)..suffixes[2]
+        return math.floor(num/1000)..suffixes[2]
     end
-    return round(num, 0)..suffixes[1]
+    return math.floor(num)..suffixes[1]
 end
 
 
