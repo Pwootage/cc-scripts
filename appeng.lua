@@ -27,15 +27,26 @@ function update()
     local free = appEng.getFreeBytes()
     local used = total - free;
     local usedPercent = used/total;
+    local items = appEng.getStoredItemCount()
+    local types = appEng.getStoredItemTypes()
+    local remItems = appEng.getRemainingItemCount()
+    local remTypes = appEng.getRemainingItemTypes()
     local msg1 = "Disk Space Usage:";
-    local msg2 = "    Used    Free   Total"
-    local msg3 = padLeft(prettyNumber(used,storageSuffixes), 8)..padLeft(prettyNumber(free,storageSuffixes), 8)..padLeft(prettyNumber(total,storageSuffixes), 8)
     local progX1 = string.len(msg1) + 1
-    drawText(1, monH - 2, msg1)
-    drawProgress(progX1, monH - 2, monW, monH - 2, usedPercent)
-    drawText(1, monH - 1, msg2)
-    drawText(1, monH - 0, msg3)
-end
+    local progColor = colors.green
+    if (usedPercent > 0.5) then progColor = colors.yellow end
+    if (usedPercent > 0.80) then progColor = colors.red end
+    term.clear()
+    drawText(1, 1, "Used disk space:  "..padLeft(prettyNumber(used,storageSuffixes), 10))
+    drawText(1, 2, "Free disk space:  "..padLeft(prettyNumber(free,storageSuffixes), 10))
+    drawText(1, 3, "Total disk space: "..padLeft(prettyNumber(total,storageSuffixes), 10))
+    drawText(1, 4, "Stored items:     "..padLeft(prettyNumber(items,storageSuffixes), 10))
+    drawText(1, 5, "Item types:       "..padLeft(prettyNumber(total,storageSuffixes), 10))
+    drawText(1, 6, "Remaining items:  "..padLeft(prettyNumber(remItems,storageSuffixes), 10))
+    drawText(1, 6, "Remaining types:  "..padLeft(prettyNumber(remTypes,storageSuffixes), 10))
+    drawText(1, monH - 0, msg1)
+    drawProgress(progX1, monH - 0, monW, monH - 2, usedPercent, progColor)
+    end
 
 function drawProgress(fromX, fromY, toX, toY, progress, color1, color2)
     color1 = color1 or colors.white
@@ -76,7 +87,7 @@ end
 function padLeft(string, chars)
     local res = string;
     while (string.len(res) < chars) do
-       res = " " + res
+       res = " "..res
     end
     return res
 end
